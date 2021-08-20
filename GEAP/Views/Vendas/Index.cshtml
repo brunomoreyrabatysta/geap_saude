@@ -1,0 +1,48 @@
+﻿@model IEnumerable<GEAP.Models.Relatorio>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Nome do vendedor
+        </th>
+        <th>
+            Quantidade de veículos vendidos
+        </th>
+        <th>
+            Quantidade de vales combustíveis emitidos
+        </th>
+        <th>
+            Total em vendas
+        </th>
+        <th>
+            Total da comissão
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NmeVendedor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantidadeVeiculos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantidadeValeCombustivel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalVenda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalComissao)
+        </td>
+    </tr>
+}
+
+</table>

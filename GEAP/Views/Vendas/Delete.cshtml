@@ -1,0 +1,56 @@
+﻿@model GEAP.Models.Venda
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Venda</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ModeloVersao.IdeModeloVersao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModeloVersao.IdeModeloVersao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vendedor.NmeVendedor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vendedor.NmeVendedor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VlrPrecoVenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VlrPrecoVenda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StaValeCombustivel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StaValeCombustivel)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

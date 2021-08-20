@@ -1,0 +1,50 @@
+﻿@model GEAP.Models.Venda
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Venda</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ModeloVersao.IdeModeloVersao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModeloVersao.IdeModeloVersao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vendedor.NmeVendedor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vendedor.NmeVendedor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VlrPrecoVenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VlrPrecoVenda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StaValeCombustivel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StaValeCombustivel)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdeVenda }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
