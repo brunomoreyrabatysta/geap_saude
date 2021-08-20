@@ -5,4 +5,6 @@ Foi colocado o servidor como localhost, precisando realizar a configuração par
 
 Criar a procedure no database.
 
+Projeto desenvolvido no Visual Studio 2019, ASP.NET  MVC 5 com linguagem C#.
+
 No menu da página Inicial terá uma opção com o nome Relatório, ao clicar na opção citada anteriormente, abrirá a página contendo a relação de vendas.
