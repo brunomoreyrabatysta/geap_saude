@@ -1,0 +1,54 @@
+USE [DBCONCESSIONARIA]
+GO
+
+/****** Object:  StoredProcedure [dbo].[ListarComissoesVendedores]    Script Date: 19/08/2021 22:49:40 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE OR ALTER   PROCEDURE [dbo].[ListarComissoesVendedores]
+AS
+
+    -- Altere esta procedure para retornar a lista
+    -- com o resultado das comissões por vendedor
+
+    SELECT T.IdeVendedor,
+	       T.NmeVendedor,
+		   COUNT(1) AS QUANTIDADE_VEICULOS,
+		   SUM(CONVERT(INT,T.StaValeCombustivel)) AS QUANTIDE_VALE,		   
+		   SUM(CASE
+		         WHEN T.VALOR_LIQUIDO < 0 THEN 0
+			     ELSE T.VALOR_LIQUIDO
+		       END) AS TOTAL_VENDA,
+		   SUM(CASE
+		         WHEN T.VALOR_LIQUIDO < 0 THEN 0
+			     ELSE T.VALOR_LIQUIDO * PERCENTUAL_COMISSAO
+		       END) AS TOTAL_COMISSAO
+	  FROM (
+    SELECT VENDE.IdeVendedor,
+	       VENDE.NmeVendedor,
+		   0.01 AS PERCENTUAL_COMISSAO,
+		   VENDA.StaValeCombustivel,
+		   VENDA.VlrPrecoVenda - CASE
+		                           WHEN VENDA.StaValeCombustivel = 1 THEN 
+		                             CASE MOD_VER.IdeCombustivel
+		                               WHEN 1 THEN 200
+		                               WHEN 2 THEN 180
+		                               WHEN 3 THEN 150
+									   ELSE 0
+		                             END
+                                   ELSE 0
+		                         END AS VALOR_LIQUIDO
+			   
+	  FROM VND001_VENDEDOR VENDE
+	 INNER JOIN VND002_VENDA VENDA ON (VENDE.IdeVendedor = VENDA.IdeVendedor)
+	 INNER JOIN VEI004_MODELO_VERSAO MOD_VER ON (VENDA.IdeModeloVersao = MOD_VER.IdeModeloVersao) ) T
+	GROUP BY T.IdeVendedor,
+	         T.NmeVendedor
+
+GO
+
+
